@@ -1,0 +1,8 @@
+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
+
+git remote add origin 
+https://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
+@github.com/giovannihnk/scripts
+
+git remote add origin main https://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
+@github.com/giovannihnk/scripts.git
