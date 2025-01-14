@@ -81,6 +81,8 @@ nb_coeff_non_zero = np.count_nonzero(compressed)  # Nombre de coefficients non n
 taux_compression = 100 - ((nb_coeff_non_zero / (taille_image[1]*taille_image[0]*3)) * 100 ) 
 print(f"taux de compression : {taux_compression}")
 
+
+####### DECOMPRESSION ###########
 decompressed = np.zeros_like(image, dtype=float)
 
 for c in range(3):
