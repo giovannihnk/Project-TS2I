@@ -49,6 +49,15 @@ def reformer_image(blocs, taille_image, taille_bloc):
 
     return image_recomposee
 
+def lp_filter(D, F):
+    # D : Matrice non quotienté par Q.
+    # F : Fréquence de coupure.
+    n = np.shape_like(D)
+    for l in range(n):
+        for k in range(n):
+            if(l+k >= F):
+                D[l,k] = 0
+    return D
 
 blocs = division_blocs(image,8)
 # print("bloc : ",blocs[0])
@@ -110,34 +119,8 @@ def compression(blocs,P,Q):
         # plt.show()
     return blocs_compressee
 
+blocs_compressed = compression(blocs,P,Q)
 
-def lp_filter(blocs,P,Q, F):
-    # F : Fréquence de coupure
-    blocs_compressee = []
-    boucle = 0
-    for M in blocs :
-        # boucle+=1
-        # print(len(blocs),boucle)
-        # print(M)
-        D = P @ M @ P.T
-        n = np.shape(D)[0]
-        for l in range(n):
-            for k in range(n):
-                if(l+k >= F):
-                    D[l,k] = 0
-        # prendre la partie entière
-        D = np.floor(D)
-        blocs_compressee.append(D)     
-        # print("MATRICE D : \n",D)
-        # plt.imsave('image_compresse.png',D)
-        # image_compresse = mpimg.imread('image_compresse.png')
-        # plt.imshow(image_compresse)
-        # plt.show()
-    return blocs_compressee
-
-
-#blocs_compressed = compression(blocs,P,Q)
-blocs_compressed = lp_filter(blocs,P,Q,69)
 img2 = reformer_image(blocs_compressed,taille_image,8)
 print(img2)
 #  — Compter le nombre de cœfficients non nuls pour obtenir le taux de compression
