@@ -120,14 +120,13 @@ def lp_filter(blocs,P,Q, F):
         # print(len(blocs),boucle)
         # print(M)
         D = P @ M @ P.T
-        n = np.shape_like(D)
-    for l in range(n):
-        for k in range(n):
-            if(l+k >= F):
-                D[l,k] = 0
-        #print(D)
+        n = np.shape(D)[0]
+        for l in range(n):
+            for k in range(n):
+                if(l+k >= F):
+                    D[l,k] = 0
         # prendre la partie entière
-        # D = np.floor(D)
+        D = np.floor(D)
         blocs_compressee.append(D)     
         # print("MATRICE D : \n",D)
         # plt.imsave('image_compresse.png',D)
@@ -137,8 +136,8 @@ def lp_filter(blocs,P,Q, F):
     return blocs_compressee
 
 
-blocs_compressed = compression(blocs,P,Q)
-
+#blocs_compressed = compression(blocs,P,Q)
+blocs_compressed = lp_filter(blocs,P,Q,69)
 img2 = reformer_image(blocs_compressed,taille_image,8)
 print(img2)
 #  — Compter le nombre de cœfficients non nuls pour obtenir le taux de compression
