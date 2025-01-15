@@ -6,11 +6,13 @@ import matplotlib.image as mpimg
 
 ###### INITIALISATION #######
 
-image_path = 'pns_original.png'
+image_path = 'trefles.png'
 
 image = mpimg.imread(image_path)
 plt.imshow(image)
 plt.show()
+print(image[57,62,:])
+
 if image.dtype != np.uint8:  # Si les valeurs sont en flottant (0 à 1)
     image = (image * 255)  # Convertir en entiers (0 à 255)
 else:
@@ -66,7 +68,7 @@ Q=np.array([[16,11,10,16,24,40,51,61],
 
 compressed = np.zeros_like(image, dtype=float)
 
-for c in range(3):
+for c in range(taille_image[2]):
     for i in range(0, taille_image[0], 8):
         for j in range(0, taille_image[1], 8):
 
@@ -93,7 +95,7 @@ print(f"taux de compression : {taux_compression}")
 ####### DECOMPRESSION ###########
 decompressed = np.zeros_like(image, dtype=np.float32)
 
-for c in range(3):
+for c in range(taille_image[2]):
     for i in range(0, taille_image[0], 8):
         for j in range(0, taille_image[1], 8):
             B = compressed[i:i+8,j:j+8,c]
@@ -106,7 +108,7 @@ for c in range(3):
          
             #print(decompressed[i:i+8,j:j+8,c])
 #decompressed = np.clip(decompressed + 128, 0, 255).astype(np.uint8)
-print(image[57,62,:])
+
 print(decompressed[57,62,:])
 decompressed = np.clip(decompressed, 0, 255).astype(np.uint8)
 plt.imshow(decompressed[:,:,0])
