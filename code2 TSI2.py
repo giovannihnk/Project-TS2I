@@ -6,7 +6,7 @@ import matplotlib.image as mpimg
 
 ###### INITIALISATION #######
 
-image_path = 'C:\\Users\\utilisateur\\Documents\\Travail\\2024\\Polytech Nice\\TS2I\\scripts\\gi\\pns_original.png'
+image_path = 'C:\\Users\\utilisateur\\Documents\\Travail\\2024\\Polytech Nice\\TS2I\\scripts\\gi\\Un_super_paysage.jpeg'
 
 image = mpimg.imread(image_path)
 if image.dtype != np.uint8:  # Si les valeurs sont en flottant (0 à 1)
@@ -134,10 +134,10 @@ def lp_filter(blocs,P,Q, F):
         # plt.imshow(image_compresse)
         # plt.show()
     return blocs_compressee
-
+   
 
 #blocs_compressed = compression(blocs,P,Q)
-blocs_compressed = lp_filter(blocs,P,Q,69)
+blocs_compressed = lp_filter(blocs,P,Q,70)
 img2 = reformer_image(blocs_compressed,taille_image,8)
 print(img2)
 #  — Compter le nombre de cœfficients non nuls pour obtenir le taux de compression
@@ -177,12 +177,8 @@ img3 = reformer_image(blocs_decompressed,taille_image,8)
 
 # Post-Processing
 # Comparaison entre la matrice originale et la matrice compressée en norme 2.
-erreur = np.linalg.norm(image - img3,ord=2)
-# Re-décalage des valeurs dans une plage de [0,255]
-image = image + np.ones_like(image)*255
-if (image.dtype == np.uint8):  # Si les valeurs en entiers (0 à 255)
-    image = (image /255).astype(np.float64)  # Convertir sont en flottant (0 à 1)
-
+erreur = np.linalg.norm(image - img2,ord=2)/(np.linalg.norm(image,ord=2))
+print("L'erreur est :", erreur)
 
 plt.imsave('image_recomposee3.png',img3)
 image_recomposee3 = mpimg.imread('image_recomposee3.png')
