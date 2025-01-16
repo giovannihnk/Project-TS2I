@@ -84,11 +84,6 @@ taux_compression = 100 - ((nb_coeff_non_zero / (taille_image[1]*taille_image[0]*
 print(f"taux de compression : {taux_compression}")
 
 
-###### CALCUL DE L'ERREUR ########
-erreur = np.linalg.norm((image-compressed))/(np.linalg.norm(image))
-print(f"l'erreur est : {erreur}")
-
-
 ####### DECOMPRESSION ###########
 decompressed = np.zeros_like(image, dtype=np.float32)
 
@@ -104,6 +99,10 @@ for c in range(taille_image[2]):  #decompression pour tous les canaux
          
             
 decompressed = np.clip(decompressed, 0, 255).astype(np.uint8)   #permet de rentrer toutes les valeurs entre 0 et 255
+
+###### CALCUL DE L'ERREUR ########
+erreur = (np.linalg.norm(((image+128)-decompressed))/(np.linalg.norm(image))) *100
+print(f"l'erreur est : {erreur}")
 
 fig,axes = plt.subplots(2,2)
 axes[0, 0].imshow(image_origine)  
