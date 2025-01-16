@@ -1,0 +1,29 @@
+On multiplie Q par un coefficient k (ou k est un entier strictement positif), 
+et on compare les taux de compression : 
+
+Image utilisée : trèfles 
+
+k=1 : 
+taux de compression : 66.15123697916667
+l'erreur est : 13.808168470859528
+
+
+k=2 : 
+taux de compression : 76.53326822916667
+l'erreur est : 18.311551213264465
+
+
+k=3 : 
+taux de compression : 81.62916666666666
+l'erreur est : 21.00820392370224
+
+k=4 : 
+taux de compression : 84.94772135416667
+l'erreur est : 23.07717353105545
+
+
+k=5 :
+taux de compression : 87.30377604166667
+l'erreur est : 24.827803671360016
+
+
