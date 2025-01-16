@@ -1,64 +1,64 @@
 Trefles
 
 Filtre = 2 : 
-taux de compression : 95.50338541666667
-l'erreur est : 39.78341519832611
+taux de compression : 95.50338541666667 %
+l'erreur est : 39.78341519832611 %
 
 Filtre = 6 : 
-aux de compression : 73.69759114583334
-l'erreur est : 20.080474019050598
+taux de compression : 73.69759114583334 %
+l'erreur est : 20.080474019050598 %
 
 Filtre = 10 : 
-taux de compression : 66.2802734375
-l'erreur est : 13.936787843704224
+taux de compression : 66.2802734375 %
+l'erreur est : 13.936787843704224 %
 
 
 
 Papillon png
 
 Filtre = 2 : 
-taux de compression : 95.27068399044205
-l'erreur est : 14.193001389503479
+taux de compression : 95.27068399044205 %
+l'erreur est : 14.193001389503479 %
 
 Filtre = 6 : 
-taux de compression : 87.53360215053763
-l'erreur est : 4.970619827508926
+taux de compression : 87.53360215053763 %
+l'erreur est : 4.970619827508926 %
 
 Filtre = 10 : 
-taux de compression : 86.78651433691756
-l'erreur est : 3.8078613579273224
+taux de compression : 86.78651433691756 %
+l'erreur est : 3.8078613579273224 %
 
 
 
 Vagues png
 
 Filtre = 2 : 
-taux de compression : 96.79907266474999
-l'erreur est : 2.1189630031585693
+taux de compression : 96.79907266474999 %
+l'erreur est : 2.1189630031585693 %
 
 Filtre = 6 : 
-taux de compression : 96.46131933874514
-l'erreur est : 1.8008235841989517
+taux de compression : 96.46131933874514 %
+l'erreur est : 1.8008235841989517 %
 
 
 Filtre = 10 :
-taux de compression : 96.46131933874514
-l'erreur est : 1.8008235841989517
+taux de compression : 96.46131933874514 %
+l'erreur est : 1.8008235841989517 %
 
 
 Papillon jpeg
 
 Filtre = 2 : 
-taux de compression : 96.60622771836007
-erreur est : 40.108586117174916</pre>
+taux de compression : 96.60622771836007 %
+erreur est : 40.108586117174916 %
 
 Filtre = 6 : 
-taux de compression : 89.72816399286988
-l'erreur est : 18.075648633885702
+taux de compression : 89.72816399286988 %
+l'erreur est : 18.075648633885702 %
 
 Filtre = 10 :
-taux de compression : 87.31408756684492
-l'erreur est : 11.211567028608037
+taux de compression : 87.31408756684492 %
+l'erreur est : 11.211567028608037 %
 
 
 
