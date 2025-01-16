@@ -47,8 +47,6 @@ for i in range (8):
 
 
 
-
-
 # initialisation de Q : matrice de quantification Q dans la norme de compression JPEG
 Q=np.array([[16,11,10,16,24,40,51,61],
             [12,12,13,19,26,58,60,55],
@@ -58,9 +56,6 @@ Q=np.array([[16,11,10,16,24,40,51,61],
             [24,35,55,64,81,104,113,92],
             [49,64,78,87,103,121,120,101],
             [72,92,95,98,112,100,103,99]])
-
-
-    
 
 
 
@@ -107,8 +102,6 @@ for c in range(taille_image[2]):
             decompressed[i:i+8, j:j+8, c] = D +128
          
         
-
-
 decompressed = np.clip(decompressed, 0, 255).astype(np.uint8)
 
 ###### CALCUL DE L'ERREUR ########
