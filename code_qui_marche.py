@@ -79,10 +79,6 @@ taux_compression = 100 - ((nb_coeff_non_zero / (taille_image[1]*taille_image[0]*
 print(f"taux de compression : {taux_compression}")
 
 
-###### CALCUL DE L'ERREUR ########
-erreur = np.linalg.norm((image-compressed))/(np.linalg.norm(image))
-print(f"l'erreur est : {erreur}")
-
 ####### DECOMPRESSION ###########
 decompressed = np.zeros_like(image, dtype=np.float32)
 
@@ -99,6 +95,9 @@ for c in range(taille_image[2]):
 
 decompressed = np.clip(decompressed, 0, 255).astype(np.uint8)
 
+###### CALCUL DE L'ERREUR ########
+erreur = (np.linalg.norm(((image+128)-decompressed))/(np.linalg.norm(image))) *100
+print(f"l'erreur est : {erreur}")
 
 #Affichage des résulats 
 
