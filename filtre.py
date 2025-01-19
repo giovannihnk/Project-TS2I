@@ -2,11 +2,12 @@ import numpy as np
 import math
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
-
+import time 
 
 ###### INITIALISATION #######
 
-image_path = 'papillon.jpeg'
+image_path = 'papillon.jpeg' #chemin de l'image 
+
 #lecture de l'image
 image_origine = mpimg.imread(image_path)  
 image = mpimg.imread(image_path)
@@ -19,20 +20,19 @@ else:
 
 
 
-# On tronque l'iamge avec ses nouvelles dimensions
+# On tronque l'image avec ses nouvelles dimensions
 hauteur, largeur = image.shape[:2]
 nouvelle_hauteur = (hauteur // 8) * 8
 nouvelle_largeur = (largeur // 8) * 8
 image = image[:nouvelle_hauteur, :nouvelle_largeur,:]
 
-#centralise les valeurs dans la matrice
+#centralisation des valeurs de la matrice
 image = image - 128
 
 taille_image = image.shape
 
 #seuil du filtre
 SEUIL=6
-
 
 
 #initialisation de P (matrice de passage) avec la formule de la double somme
@@ -59,10 +59,11 @@ Q=np.array([[16,11,10,16,24,40,51,61],
 
 
 
-
 ####### COMPRESSION #########
 
-compressed = np.zeros_like(image, dtype=float)
+compressed = np.zeros_like(image, dtype=float) #initialisation d'une matrice pour stocker les coefficients de compression
+
+start_compression = time.time() # début du chronomètre pour le temps d'exécution
 
 for c in range(taille_image[2]):  #compressions pour tous les canaux
     for i in range(0, taille_image[0], 8):   #compression par bloc de 8x8
@@ -80,10 +81,16 @@ for c in range(taille_image[2]):  #compressions pour tous les canaux
                         D_tilde[k, l] = 0
             compressed[i:i+8, j:j+8, c] = D_tilde
                        
+end_compression = time.time() # arrêt du chronomètre
+
+time_taken_compression = end_compression - start_compression # calcul du temps d'exécution de la compression
+print(f"Temps d'exécution de la compression : {time_taken_compression:.6f} secondes") #afficher le temps d'exécution 
 
 
 ####### DECOMPRESSION ###########
 decompressed = np.zeros_like(image, dtype=np.float32)
+
+start_decompression = time.time() #début du chronomètre pour le temps d'exécution
 
 for c in range(taille_image[2]):
     for i in range(0, taille_image[0], 8):
@@ -98,8 +105,14 @@ for c in range(taille_image[2]):
 #on limite les valeurs de la matrice entre 0 et 255
 decompressed = np.clip(decompressed, 0, 255).astype(np.uint8)  
 
+end_decompression = time.time() #arrêt du chronomètre
 
-######## TAUX DE COMPRESSION ########
+time_taken_decompression = end_decompression - start_decompression # calcul du temps d'exécution de la décompression
+print(f"Temps d'exécution de la decompression : {time_taken_decompression:.6f} secondes") #affichage du temps d'exécution
+
+
+
+######## CALCUL DU TAUX DE COMPRESSION ########
 nb_coeff_non_zero = np.count_nonzero(compressed)  # Nombre de coefficients non nuls
 taux_compression = 100 - ((nb_coeff_non_zero / (taille_image[1]*taille_image[0]*3)) * 100 ) 
 print(f"taux de compression : {taux_compression}")
@@ -109,7 +122,7 @@ print(f"taux de compression : {taux_compression}")
 erreur = (np.linalg.norm(((image+128)-decompressed))/(np.linalg.norm(image))) *100
 print(f"l'erreur est : {erreur}")
 
-#affichage des images
+##### AFFICHAGE DES IMAGES
 fig,axes = plt.subplots(2,2)
 axes[0, 0].imshow(image_origine)  
 axes[0, 0].set_title("Image d'origine")  
